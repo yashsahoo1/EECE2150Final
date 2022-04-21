@@ -106,11 +106,8 @@ button1.pack(pady=50)
 
 wordsearch.mainloop()
 
-for x in range(1):
-    w = WordSearch('dict.txt', selectionsize, selectiondiag, reverse)
-    print(selectionsize, '\n', w, sep='')
+
+w = WordSearch('dict.txt', selectionsize, selectiondiag, reverse)
+print(selectionsize, '\n', w, sep='')
 
 w.print_txt_file()
-
-
-from tkinter import *
