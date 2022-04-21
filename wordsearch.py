@@ -2,6 +2,7 @@
 
 import copy
 import random
+from letter import Letter
 
 random.seed()
 
@@ -36,8 +37,6 @@ class WordSearch:
 
         # Initialize arrays that show locations of words
         self.search_array = []
-        self.placement_array = []
-        self.answer_key = []
 
         self.hide_words()   # Hide the words from word_list in the wordsearch
 
@@ -51,7 +50,7 @@ class WordSearch:
 
         for x in range(self.dimension):         # Print word search array
             for y in range(self.dimension):
-                string_output += self.search_array[x][y] + '  '
+                string_output += self.search_array[x][y].value + '  '
             string_output += '\n'
 
         string_output += '\nWord Bank: \n\n'       # Print word bank
@@ -66,18 +65,11 @@ class WordSearch:
         Populates the search array, hiding words within and generating answer key
         :return:
         '''
-        alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
         # Initialize the search array, answer key array, and the placement array (useful when validating placements)
 
         # Search array set to random letters by default
-        self.search_array = [[random.choice(alphabet) for x in range(self.dimension)] for y in range(self.dimension)]
-
-        # Answer key set to all dashes by default
-        self.answer_key = [['-' for x in range(self.dimension)] for y in range(self.dimension)]
-
-        # Placement array set to all False values by default
-        self.placement_array = [[False for x in range(self.dimension)] for y in range(self.dimension)]
+        self.search_array = [[Letter() for x in range(self.dimension)] for y in range(self.dimension)]
 
         for word in self.word_list:
 
@@ -97,10 +89,11 @@ class WordSearch:
                 # Create temporary versions of the different arrays to alter without influencing the actual versions
                 # before these alterations are determined to be valid
                 temp_array = copy.deepcopy(self.search_array)
-                temp_place_array = copy.deepcopy(self.placement_array)
-                temp_ans_key = copy.deepcopy(self.answer_key)
 
                 direction = random.choice(self.parameters)  # Choose direction from the possible pool created in __init_
+
+                dx = 0
+                dy = 0
 
                 # Set the correct values for dy and dx that will be used to increment during letter placement
                 if direction == 'Horiz':
@@ -130,10 +123,9 @@ class WordSearch:
 
                     # If the space does not contain a word already or is already the same value, place the letter
                     # updates the search, answer, and placement indicator arrays
-                    if not temp_place_array[y][x] or temp_array[y][x] == letter:
-                        temp_array[y][x] = word[letter]
-                        temp_ans_key[y][x] = word[letter]
-                        temp_place_array[y][x] = True
+                    if not temp_array[y][x].part_of_word or temp_array[y][x].value == letter:
+                        temp_array[y][x].value = word[letter]
+                        temp_array[y][x].part_of_word = True
                         x += dx
                         y += dy
                     else:
@@ -143,8 +135,6 @@ class WordSearch:
                 if placed:
                     # If the word was correctly placed, update each of the arrays
                     self.search_array = temp_array
-                    self.placement_array = temp_place_array
-                    self.answer_key = temp_ans_key
                 else:
                     # If it did fail, increment the fail counter
                     fail += 1
@@ -168,7 +158,10 @@ class WordSearch:
 
         for x in range(self.dimension):
             for y in range(self.dimension):
-                write_ans_key += self.answer_key[x][y] + '  '
+                if self.search_array[x][y].part_of_word:
+                    write_ans_key += self.search_array[x][y].value + '  '
+                else:
+                    write_ans_key += '-' + '  '
             write_ans_key += '\n'
             # print(write_ans_key)
         return write_ans_key
