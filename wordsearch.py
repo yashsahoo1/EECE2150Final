@@ -207,3 +207,4 @@ def get_words(file_path, max_length, num_words, min_length):
         if min_length < len(new_word) <= max_length:
             chosen_words.append(new_word)
     return chosen_words
+
