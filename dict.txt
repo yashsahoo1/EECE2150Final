@@ -350,7 +350,7 @@ heard
 best
 hour
 better
-true .
+true
 during
 hundred
 five

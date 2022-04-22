@@ -9,7 +9,7 @@ random.seed()
 
 class WordSearch:
 
-    def __init__(self, word_file_path='dict.txt', dimension=10, diagonal=False, reverse=False):
+    def __init__(self, word_file_path='dict.txt', dimension=10, diagonal=False, reverse=False, override_word_count=-1):
         '''
         Creates Word Search Object
         :param word_file_path: String describing file path that refers to a text file holding list of words
@@ -19,9 +19,16 @@ class WordSearch:
         '''
 
         self.dimension = dimension  # add parameters as object attributes
+
+        if dimension < 5:
+            raise ValueError("The minimum dimension for a wordsearch is 5x5")
+
         self.reverse = reverse
 
-        self.num_words = 8*1.07**(dimension - 10)   # use dimension size and a determined model to find wordcount
+        self.num_words = 8*1.06**(dimension - 10)
+        # use dimension size and a determined model to find wordcount'
+        if override_word_count > 0:
+            self.num_words = override_word_count
 
         self.max_word_len = dimension-2  # restrict word length based off of dimension of word search
         self.min_word_len = 3  # words in wordsearch must be at least three letters
@@ -138,7 +145,7 @@ class WordSearch:
                 else:
                     # If it did fail, increment the fail counter
                     fail += 1
-                    if fail > 20:
+                    if fail > 10:
                         # If the word fails to be placed 20 times in a row, remove that word from the word list
                         if reverse:
                             print("del", word[::-1])

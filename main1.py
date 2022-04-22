@@ -50,7 +50,6 @@ def selection():
     print(reverse)
 
 
-
 wordsearch = Tk()
 wordsearch.title("Wordsearch Generator! ")
 wordsearch.geometry("500x500")
@@ -105,7 +104,6 @@ button1 = Button(wordsearch, text="Generate Wordsearch", command=selection)
 button1.pack(pady=50)
 
 wordsearch.mainloop()
-
 
 w = WordSearch('dict.txt', selectionsize, selectiondiag, reverse)
 print(selectionsize, '\n', w, sep='')
