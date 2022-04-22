@@ -1,4 +1,3 @@
-# Testing commit
 
 import copy
 import random
@@ -26,7 +25,7 @@ class WordSearch:
         self.reverse = reverse
 
         self.num_words = 8*1.06**(dimension - 10)
-        # use dimension size and a determined model to find wordcount'
+        # use dimension size and a determined model to find wordcount
         if override_word_count > 0:
             self.num_words = override_word_count
 

@@ -1,5 +1,6 @@
 from wordsearch import WordSearch
 from tkinter import *
+from play_game import solve_ws
 
 selectionsize = 0
 selectiondiag = 0
@@ -109,3 +110,5 @@ w = WordSearch('dict.txt', selectionsize, selectiondiag, reverse)
 print(selectionsize, '\n', w, sep='')
 
 w.print_txt_file()
+
+solve_ws(w.word_list, w.dimension, w.search_array)
