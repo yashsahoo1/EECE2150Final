@@ -132,6 +132,17 @@ class WordSearch:
                     if not temp_array[y][x].part_of_word or temp_array[y][x].value == letter:
                         temp_array[y][x].value = word[letter]
                         temp_array[y][x].part_of_word = True
+                        temp_array[y][x].parent = word
+
+                        if not letter:
+                            temp_array[y][x].place_in_word = 'Start'
+                            temp_array[y][x].dy = dy
+                            temp_array[y][x].dx = dx
+                        elif letter == len(word)-1:
+                            temp_array[y][x].place_in_word = 'End'
+                            temp_array[y][x].dy = dy
+                            temp_array[y][x].dx = dx
+
                         x += dx
                         y += dy
                     else:
