@@ -1,7 +1,6 @@
 import random
 
 
-
 class Letter:
 
     def __init__(self):
@@ -14,3 +13,4 @@ class Letter:
         self.parent = None
         self.dy = None
         self.dx = None
+        self.reverse = None

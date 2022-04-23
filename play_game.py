@@ -51,7 +51,10 @@ def solve_ws(word_bank, dimension, search_array):
         choice2 = search_array[row][col]
         if choice1 and choice2 and choice2.place_in_word and choice1.place_in_word and choice1 != choice2 \
                 and choice1.parent == choice2.parent:
-            w_bank.remove(choice2.parent)
+            if choice1.reverse:
+                w_bank.remove(choice2.parent[::-1])
+            else:
+                w_bank.remove(choice2.parent)
             print("Removed")
 
             bank = str_bank(w_bank)

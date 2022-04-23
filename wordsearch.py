@@ -138,10 +138,13 @@ class WordSearch:
                             temp_array[y][x].place_in_word = 'Start'
                             temp_array[y][x].dy = dy
                             temp_array[y][x].dx = dx
+                            temp_array[y][x].reverse = reverse
+
                         elif letter == len(word)-1:
                             temp_array[y][x].place_in_word = 'End'
                             temp_array[y][x].dy = dy
                             temp_array[y][x].dx = dx
+                            temp_array[y][x].reverse = reverse
 
                         x += dx
                         y += dy
