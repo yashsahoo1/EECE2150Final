@@ -3,23 +3,26 @@ from tkinter import font
 from functools import partial
 
 global choice1
-choice1 = None
 global choice2
-choice2 = None
 global w_bank
 global buttons
 global choice1_row
 global choice1_col
 
+choice1 = None
+choice2 = None
+
 
 def str_bank(word_bank):
     bank = ''
-
     bank += '\nWord Bank (' + str(len(word_bank)) + ' words remaining)\n\n'  # Print word bank
     for word in range(len(word_bank)):
         bank += "%-15s" % (word_bank[word])
         if word % 4 == 3:
             bank += '\n'
+    if len(word_bank) % 4:
+        for x in range(4-len(word_bank) % 4):
+            bank += "%-15s" % ''
     return bank
 
 
@@ -44,6 +47,7 @@ def solve_ws(word_bank, dimension, search_array):
         global choice1_col
         global w_bank
         global buttons
+
         print(search_array[row][col].value)
         print(search_array[row][col].parent)
         print(search_array[row][col].place_in_word)
@@ -58,6 +62,8 @@ def solve_ws(word_bank, dimension, search_array):
             print("Removed")
 
             bank = str_bank(w_bank)
+            clear_grid = Label(root, text='', font=textfont)
+            clear_grid.grid(row=0, column=0, rowspan=dimension)
             word_bank = Label(root, text=bank, font=textfont)
             word_bank.grid(row=0, column=0, rowspan=dimension)
 
@@ -71,12 +77,15 @@ def solve_ws(word_bank, dimension, search_array):
             if row == choice1_row:
                 for column in range(min(col, choice1_col), max(col, choice1_col) + 1):
                     buttons[row][column].configure(bg="red", fg="yellow")
+                    buttons[row][column]["state"] = DISABLED
             elif col == choice1_col:
                 for _row in range(min(row, choice1_row), max(row, choice1_row) + 1):
                     buttons[_row][col].configure(bg="red", fg="yellow")
+                    buttons[_row][col]["state"] = DISABLED
             else:
                 for increment in range(len(choice2.parent)):
                     buttons[start_y + choice1.dy*increment][start_x + choice1.dx*increment].configure(bg="red", fg="yellow")
+                    buttons[start_y + choice1.dy*increment][start_x + choice1.dx*increment]["state"] = DISABLED
         choice1_col = col
         choice1_row = row
         return

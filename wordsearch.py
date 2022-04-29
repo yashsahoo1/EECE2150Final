@@ -127,9 +127,9 @@ class WordSearch:
 
                 for letter in range(len(word)):
 
-                    # If the space does not contain a word already or is already the same value, place the letter
+                    # If the space does not contain a word already, place the letter
                     # updates the search, answer, and placement indicator arrays
-                    if not temp_array[y][x].part_of_word or temp_array[y][x].value == letter:
+                    if not temp_array[y][x].part_of_word:
                         temp_array[y][x].value = word[letter]
                         temp_array[y][x].part_of_word = True
                         temp_array[y][x].parent = word
