@@ -1,0 +1,17 @@
+Hello! Welcome to our wordsearch generator and player!
+
+--------------------------------------------------------------------
+To get started, go to main1.py and run the code
+
+Steps to play the game:
+1) Customize your wordsearch by selecting the dropdown menus and press
+   "Generate Worsearch." The game interface will pop up with your wordsearch
+
+2) Look for words! Use the wordbank to find words in the wordsearch
+
+   If you have found a word, select the starting
+   letter of the word and the ending letter of the word to select
+   the characters in between it.
+
+   *If all of the characters change color, you have successfully found a word!
+
