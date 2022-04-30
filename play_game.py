@@ -3,6 +3,11 @@ from tkinter import font
 from functools import partial
 
 
+# NEED TO CHANGE END_GAME DISPLAY AND ALSO DETECTION OF WHEN THE GAME IS OVER
+
+
+
+
 class GameWindow:
     '''
     A class to represent the gameplay window that shows the user the wordsearch and allows for manipulation
@@ -72,7 +77,7 @@ class GameWindow:
         w_bank = self.word_bank
         bank = self.str_bank()
         instructions = Label(self.root, text=self.instructions, font=self.text_font)
-        instructions.grid(row=self.dimension+1, column=0, rowspan=6)
+        instructions.grid(row=0, column=1, columnspan=self.dimension)
         word_bank = Label(self.root, text=bank, font=self.text_font)
         word_bank.grid(row=0, column=0, rowspan=self.dimension)
 
@@ -106,8 +111,8 @@ class GameWindow:
             bank = self.str_bank()
             word_bank = Label(self.root, text=bank, font=self.text_font)
             word_bank.grid(row=0, column=0, rowspan=self.dimension)
-            instructions = Label(self.root, text=self.instructions, font=self.text_font)
-            instructions.grid(row=self.dimension + 1, column=0, rowspan=6)
+            # instructions = Label(self.root, text=self.instructions, font=self.text_font)
+            # instructions.grid(row=0, column=0, columnspan=self.dimension)
 
             # Determines start of word
             if self.choice1.place_in_word == 'Start':
@@ -130,11 +135,15 @@ class GameWindow:
                 for increment in range(len(self.choice2.parent)):
                     self.buttons[start_y + self.choice1.dy*increment][start_x + self.choice1.dx*increment].configure(bg="red", fg="yellow")
                     self.buttons[start_y + self.choice1.dy*increment][start_x + self.choice1.dx*increment]["state"] = DISABLED
+
             if len(self.word_bank) == 0:
+                for widget in self.root.winfo_children():
+                    widget.destroy()
                 text_font = font.Font(family="Times")
-                text_font.config(size=80)
+                text_font.config(size=100)
                 win = Label(self.root, text='YOU WIN!', font=text_font)
-                win.grid(row=0, column=0, rowspan=self.dimension, columnspan=self.dimension)
+                win.grid(row=0, column=0, rowspan=2*self.dimension, columnspan=self.dimension)
+
         self.choice1_col = col
         self.choice1_row = row
         return
@@ -149,4 +158,4 @@ class GameWindow:
             for c in range(self.dimension):
                 self.buttons[r][c] = Button(self.root, text=self.search_array[r][c].value, padx=5, pady=0,
                                             command=partial(self.click_letter, r, c), font=self.text_font)
-                self.buttons[r][c].grid(row=r, column=c+20)
+                self.buttons[r][c].grid(row=r+1, column=c+20)
