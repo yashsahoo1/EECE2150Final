@@ -48,7 +48,7 @@ def selection():
     elif reverse == "No":
         reverse = False
 
-    print(reverse)
+    wordsearch.destroy()
 
 
 wordsearch = Tk()
@@ -63,10 +63,7 @@ gridoptions = {
     "20x20": 20,
     "25x25": 25,
     "30x30": 30,
-    "35x35": 35,
-    "40x40": 40,
-    "45x45": 45,
-    "50x50": 50,
+    "35x35": 35
 
 }
 

@@ -7,6 +7,9 @@ random.seed()
 
 
 class WordSearch:
+    '''
+    A class to represent the basic Word Search object
+    '''
 
     def __init__(self, word_file_path='dict.txt', dimension=10, diagonal=False, reverse=False, override_word_count=-1):
         '''
