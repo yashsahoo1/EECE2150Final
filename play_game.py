@@ -21,6 +21,9 @@ class GameWindow:
         self.word_bank = word_bank
         self.dimension = dimension
         self.search_array = search_array
+        self.instructions = 'INSTRUCTIONS: \n\nTo cross a word off of the list, click one end of the \n word ' \
+                            'and then the other end of the word, without clicking \nanything else' \
+                            ' in between.\n\n'
 
         # Attributes for selection of letters
         self.choice1 = None
@@ -48,8 +51,9 @@ class GameWindow:
         :return: str -- Remaining words to find
         '''
 
+        # bank = self.instructions
         bank = ''
-        bank += '\nWord Bank (' + str(len(self.word_bank)) + ' words remaining)\n\n'  # Print word bank
+        bank += '\n\n\n\nWord Bank (' + str(len(self.word_bank)) + ' words remaining)\n\n'  # Print word bank
         for word in range(len(self.word_bank)):
             bank += "%-15s" % (self.word_bank[word])
             if word % 4 == 3:
@@ -67,6 +71,8 @@ class GameWindow:
 
         w_bank = self.word_bank
         bank = self.str_bank()
+        instructions = Label(self.root, text=self.instructions, font=self.text_font)
+        instructions.grid(row=self.dimension+1, column=0, rowspan=6)
         word_bank = Label(self.root, text=bank, font=self.text_font)
         word_bank.grid(row=0, column=0, rowspan=self.dimension)
 
@@ -100,6 +106,8 @@ class GameWindow:
             bank = self.str_bank()
             word_bank = Label(self.root, text=bank, font=self.text_font)
             word_bank.grid(row=0, column=0, rowspan=self.dimension)
+            instructions = Label(self.root, text=self.instructions, font=self.text_font)
+            instructions.grid(row=self.dimension + 1, column=0, rowspan=6)
 
             # Determines start of word
             if self.choice1.place_in_word == 'Start':
@@ -122,7 +130,11 @@ class GameWindow:
                 for increment in range(len(self.choice2.parent)):
                     self.buttons[start_y + self.choice1.dy*increment][start_x + self.choice1.dx*increment].configure(bg="red", fg="yellow")
                     self.buttons[start_y + self.choice1.dy*increment][start_x + self.choice1.dx*increment]["state"] = DISABLED
-
+            if len(self.word_bank) == 0:
+                text_font = font.Font(family="Times")
+                text_font.config(size=80)
+                win = Label(self.root, text='YOU WIN!', font=text_font)
+                win.grid(row=0, column=0, rowspan=self.dimension, columnspan=self.dimension)
         self.choice1_col = col
         self.choice1_row = row
         return

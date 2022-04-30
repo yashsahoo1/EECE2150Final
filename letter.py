@@ -3,7 +3,7 @@ import random
 
 class Letter:
     '''
-
+    A class to represent a single letter on the word search board.  Contains data that is helpful during gameplay.
     '''
 
     def __init__(self):

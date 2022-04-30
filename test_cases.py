@@ -21,4 +21,3 @@ for x in range(20, 30):
 for x in range(20, 30):
     CheckWordDeletionWithOverload = WordSearch('dict.txt', x, False, False, 100)
     print(CheckWordDeletionWithOverload.get_answer_key())
-
