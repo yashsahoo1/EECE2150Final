@@ -1,6 +1,6 @@
 from wordsearch import WordSearch
 from tkinter import *
-from play_game import solve_ws
+from play_game import GameWindow
 
 selectionsize = 0
 selectiondiag = 0
@@ -111,4 +111,4 @@ print(selectionsize, '\n', w, sep='')
 
 w.print_txt_file()
 
-solve_ws(w.word_list, w.dimension, w.search_array)
+W = GameWindow(w.word_list, w.dimension, w.search_array)
