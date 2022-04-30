@@ -39,7 +39,7 @@ class GameWindow:
         self.set_buttons()
 
         # Calls function to output board and play
-        self.solve_ws()
+        self.start()
         self.root.mainloop()
 
     def str_bank(self):
