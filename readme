@@ -4,6 +4,7 @@ Hello! Welcome to our wordsearch generator and player!
 To get started, go to main1.py and run the code
 
 Steps to play the game:
+
 1) Customize your wordsearch by selecting the dropdown menus and press
    "Generate Worsearch." The game interface will pop up with your wordsearch
 
