@@ -32,7 +32,7 @@ def selection():
     elif selectionsize == "50x50":
         selectionsize = 50
 
-    print(selectionsize)
+    #print(selectionsize)
 
     selectiondiag = buttonclick2.get()
     if selectiondiag == "No":
@@ -40,7 +40,7 @@ def selection():
     elif selectiondiag == "Yes":
         selectiondiag = True
 
-    print(selectiondiag)
+    #print(selectiondiag)
 
     reverse = buttonclick3.get()
     if reverse == "Yes":
