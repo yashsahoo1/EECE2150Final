@@ -1,20 +1,55 @@
 Hello! Welcome to our wordsearch generator and player!
 
 --------------------------------------------------------------------
+Setting up the Game:
+_____________________
+
+Download the necessary code.  In order to run, these files must all be in the same project folder:
+
+1) wordsearch.py
+
+2) gamewindow.py
+
+3) inputwindow.py
+
+4) letter.py
+
+5) main1.py        **The file that is actually run to execute the program
+
+6) dict.txt         **This file must contain the pool of words that you would like to use to create word searches.
+                      It must have at least 50 words of at least 4 letters each. A default dict.txt is available
+                      accompanying this file on gitHub**
+
+Additionally, the Tkinter module may have to be installed on your computer if it has not yet been.
+
+If other issues arise please contact us at jfalcon899r@gmail.com
+
+--------------------------------------------------------------------
+Running and Playing The Game:
+______________________________
+
 To get started, go to main1.py and run the code
 
 Steps to play the game:
 
 1) Customize your wordsearch by selecting the dropdown menus and press
-   "Generate Wordsearch". The game interface will pop up with your wordsearch
+   "Generate Wordsearch". The game interface will pop up with your wordsearch.
 
-   A text file with the solution will also be created in the project folder
+    *2 Text files will also be created:
+        -->Word_Search.txt   *The word search in text format
+        --> Word_Search_Answer_Key.txt    *The solution to the word search in text format
 
-2) Look for words! Use the word bank to find words in the wordsearch
+2) On the GUI game interface:    ***
+
+   Look for words! Use the word bank to find words in the wordsearch
 
    If you have found a word, select the starting
    letter of the word and the ending letter of the word to select
    the characters in between it.
 
-   *If all of the characters change color, you have successfully found a word!
+   *If the characters of the word change color, you have successfully found a word!
+   It will be removed from the word list.
+
+
+   *** The GUI gameplay has been proven to work on Tkinter installed on windows
 

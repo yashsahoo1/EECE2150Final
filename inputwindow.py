@@ -2,22 +2,43 @@ from tkinter import *
 
 
 class InputWindow:
+    '''
+    A class that creates a GUI input window and stores user input regarding word search parameters
+    '''
 
     def __init__(self):
-        print("Here")
+        '''
+        Creates necessary attributes and sets up input window
+        '''
+
+        # Create necessary attributes
+
+        # Three main variables that will be useful for main1.py
         self.selectionsize = None
         self.selectiondiag = None
         self.reverse = None
+
+        # Create display window
         self.window = Tk()
         self.window.title("Wordsearch Generator! ")
         self.window.geometry("500x500")
+
+        # Create empty objects to hold buttons
         self.buttonclick = None
         self.buttonclick2 = None
         self.buttonclick3 = None
+
+        # Create button objects
         self.make_buttons()
 
     def make_buttons(self):
-        # part1
+        '''
+        A method that specifically creates the buttons on the GUI screen
+        :return:
+        '''
+
+        # List of options for size dropdown menu
+
         gridoptions = {
 
             "10x10": 10,
@@ -29,17 +50,21 @@ class InputWindow:
 
         }
 
+        # Create dropdown
         self.buttonclick = StringVar()
         self.buttonclick.set("Gridsize")
         dropdown = OptionMenu(self.window, self.buttonclick, *gridoptions)
         dropdown.pack()
 
-        # part 2
+        # List of options for diagonal dropdown menu
+
         diagonaloptions = {
 
             "Yes": 1,
             "No": 0
         }
+
+        # Create dropdown
 
         self.buttonclick2 = StringVar()
         self.buttonclick2.set("Include Diagonal? ")
@@ -47,27 +72,38 @@ class InputWindow:
         dropdown2 = OptionMenu(self.window, self.buttonclick2, *diagonaloptions)
         dropdown2.pack(pady=20)
 
-        # part 3
+        # List of options for reverse dropdown menu
+
         reverseoptions = {
             "Yes": 1,
             "No": 0
         }
 
+        # Create dropdown
+
         self.buttonclick3 = StringVar()
         self.buttonclick3.set("Reverse Character? ")
-
         dropdown3 = OptionMenu(self.window, self.buttonclick3, *reverseoptions)
         dropdown3.pack()
 
-        # button
+        # Create Generate word search button
         button1 = Button(self.window, text="Generate Wordsearch", command=self.selection)
         button1.pack(pady=50)
+
+        # Run mainloop of window
         self.window.mainloop()
 
     def selection(self):
+        '''
+        A function that takes the input from the GUI window and stores it into class attributes
+        :return:
+        '''
+
+        # Use input to generate selection size variable
 
         self.selectionsize = self.buttonclick.get()
-
+        if self.selectionsize == "Gridsize":
+            self.selectionsize = 10
         if self.selectionsize == "10x10":
             self.selectionsize = 10
         elif self.selectionsize == "15x15":
@@ -80,27 +116,32 @@ class InputWindow:
             self.selectionsize = 30
         elif self.selectionsize == "35x35":
             self.selectionsize = 35
-        elif self.selectionsize == "40x40":
-            self.selectionsize = 40
-        elif self.selectionsize == "45x45":
-            self.selectionsize = 45
-        elif self.selectionsize == "50x50":
-            self.selectionsize = 50
 
-        # print(selectionsize)
+        print(self.selectionsize)
 
-        selectiondiag = self.buttonclick2.get()
-        if selectiondiag == "No":
-            selectiondiag = False
-        elif selectiondiag == "Yes":
-            selectiondiag = True
+        # Use input to determine and store diagonal preference
 
-        # print(selectiondiag)
+        self.selectiondiag = self.buttonclick2.get()
+        if self.selectiondiag == "Include Diagonal? ":
+            self.selectiondiag = False
+        if self.selectiondiag == "No":
+            self.selectiondiag = False
+        elif self.selectiondiag == "Yes":
+            self.selectiondiag = True
 
-        reverse = self.buttonclick3.get()
-        if reverse == "Yes":
-            reverse = True
-        elif reverse == "No":
-            reverse = False
+        print(self.selectiondiag)
 
+        # Use input to determine and store reverse preference
+
+        self.reverse = self.buttonclick3.get()
+        if self.reverse == "Reverse Character? ":
+            self.reverse = False
+        if self.reverse == "Yes":
+            self.reverse = True
+        elif self.reverse == "No":
+            self.reverse = False
+
+        print(self.reverse)
+
+        # Closes input window
         self.window.destroy()

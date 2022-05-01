@@ -3,17 +3,12 @@ from tkinter import font
 from functools import partial
 
 
-# NEED TO CHANGE END_GAME DISPLAY AND ALSO DETECTION OF WHEN THE GAME IS OVER
-
-
-
-
 class GameWindow:
     '''
     A class to represent the gameplay window that shows the user the wordsearch and allows for manipulation
     '''
 
-    def __init__(self, word_bank, dimension, search_array):
+    def __init__(self, word_bank, dimension, search_array, preferences):
         '''
         Creates Game window and executes game functions
         :param word_bank: List of words
@@ -28,7 +23,8 @@ class GameWindow:
         self.search_array = search_array
         self.instructions = 'INSTRUCTIONS: \n\nTo cross a word off of the list, click one end of the \n word ' \
                             'and then the other end of the word, without clicking \nanything else' \
-                            ' in between.\n\n'
+                            ' in between.\n\nPREFERENCES:\n\n-Size: ' + str(preferences[0]) + "\n-Diagonals: " \
+                            + str(preferences[1]) + "\n-Reversed Words: " + str(preferences[2])
 
         # Attributes for selection of letters
         self.choice1 = None
@@ -47,7 +43,13 @@ class GameWindow:
         self.set_buttons()
 
         # Calls function to output board and play
+        self.wb_c = None
+        self.wb_r = None
+        self.wb_cs = None
+        self.wb_rs = None
         self.start()
+
+
         self.root.mainloop()
 
     def str_bank(self):
@@ -77,9 +79,25 @@ class GameWindow:
         w_bank = self.word_bank
         bank = self.str_bank()
         instructions = Label(self.root, text=self.instructions, font=self.text_font)
-        instructions.grid(row=0, column=1, columnspan=self.dimension)
+
+        if self.dimension > 10:
+            instructions.grid(row=0, column=0, rowspan=3*self.dimension//4)
+        else:
+            instructions.grid(row=0, column=0, rowspan=self.dimension)
+
         word_bank = Label(self.root, text=bank, font=self.text_font)
-        word_bank.grid(row=0, column=0, rowspan=self.dimension)
+
+        if self.dimension >= 20:
+            self.wb_c = 0
+            self.wb_cs = 1
+            self.wb_r = self.dimension//2
+            self.wb_rs = self.dimension
+        else:
+            self.wb_c = 1
+            self.wb_cs = self.dimension*5
+            self.wb_r = self.dimension+1
+            self.wb_rs = 1
+        word_bank.grid(row=self.wb_r, column=self.wb_c, columnspan=self.wb_cs, rowspan=self.wb_rs)
 
     def click_letter(self, row, col):
         '''
@@ -110,7 +128,7 @@ class GameWindow:
             # Recreates word bank string and re-displays
             bank = self.str_bank()
             word_bank = Label(self.root, text=bank, font=self.text_font)
-            word_bank.grid(row=0, column=0, rowspan=self.dimension)
+            word_bank.grid(row=self.wb_r, column=self.wb_c, columnspan=self.wb_cs, rowspan=self.wb_rs)
             # instructions = Label(self.root, text=self.instructions, font=self.text_font)
             # instructions.grid(row=0, column=0, columnspan=self.dimension)
 
@@ -136,6 +154,7 @@ class GameWindow:
                     self.buttons[start_y + self.choice1.dy*increment][start_x + self.choice1.dx*increment].configure(bg="red", fg="yellow")
                     self.buttons[start_y + self.choice1.dy*increment][start_x + self.choice1.dx*increment]["state"] = DISABLED
 
+            # If all words are found, the screen is cleared, and it displays a "You win" message
             if len(self.word_bank) == 0:
                 for widget in self.root.winfo_children():
                     widget.destroy()
@@ -158,4 +177,4 @@ class GameWindow:
             for c in range(self.dimension):
                 self.buttons[r][c] = Button(self.root, text=self.search_array[r][c].value, padx=5, pady=0,
                                             command=partial(self.click_letter, r, c), font=self.text_font)
-                self.buttons[r][c].grid(row=r+1, column=c+20)
+                self.buttons[r][c].grid(row=r+1, column=c+1)
