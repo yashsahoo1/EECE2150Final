@@ -42,14 +42,16 @@ class GameWindow:
         self.buttons = [[None for x in range(dimension)] for x in range(dimension)]
         self.set_buttons()
 
-        # Calls function to output board and play
+        # Create vars that will define the location of word bank
         self.wb_c = None
         self.wb_r = None
         self.wb_cs = None
         self.wb_rs = None
+
+        # Calls function to output board and play
         self.start()
 
-
+        # Run Tk()
         self.root.mainloop()
 
     def str_bank(self):

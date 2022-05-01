@@ -1,10 +1,9 @@
-Hello! Welcome to our wordsearch generator and player!
-
---------------------------------------------------------------------
 Setting up the Game:
-_____________________
+______________________________
 
-Download the necessary code.  In order to run, these files must all be in the same project folder:
+Download the necessary code.  It is probably easiest to do a bulk download from GitHub.
+
+In order to run, these files must all be in the same project folder:
 
 1) wordsearch.py
 
@@ -18,38 +17,34 @@ Download the necessary code.  In order to run, these files must all be in the sa
 
 6) dict.txt         **This file must contain the pool of words that you would like to use to create word searches.
                       It must have at least 50 words of at least 4 letters each. A default dict.txt is available
-                      accompanying this file on gitHub**
+                      accompanying this file on GitHub**
 
 Additionally, the Tkinter module may have to be installed on your computer if it has not yet been.
 
-If other issues arise please contact us at jfalcon899r@gmail.com
-
---------------------------------------------------------------------
 Running and Playing The Game:
 ______________________________
 
-To get started, go to main1.py and run the code
+To get started, go to main1.py and run the code, the GUI Input window should open
 
 Steps to play the game:
 
-1) Customize your wordsearch by selecting the dropdown menus and press
-   "Generate Wordsearch". The game interface will pop up with your wordsearch.
+1) Customize your wordsearch by selecting the dropdown menus and choosing the desired value.
+    When satisfied, press ”Generate Wordsearch". The game interface will pop up with your wordsearch.
 
-    *2 Text files will also be created:
-        -->Word_Search.txt   *The word search in text format
-        --> Word_Search_Answer_Key.txt    *The solution to the word search in text format
+2 Text files will also be created:
+        → Word_Search.txt   *The word search in text format
+        → Word_Search_Answer_Key.txt    *The solution to the word search in text format
 
 2) On the GUI game interface:    ***
 
-   Look for words! Use the word bank to find words in the wordsearch
+   Look for words! Use the word bank to find words in the wordsearch.
 
-   If you have found a word, select the starting
-   letter of the word and the ending letter of the word to select
-   the characters in between it.
+   If you have found a word, click the first/last letter of the word and then,
+   without clicking any other letters in between, click the other end of the word
+   to prove that indeed the word has been found.  If done correctly, the word will
+   change color and its buttons will become inactive. This signifies that you have
+   successfully found a word, and it will be removed from the word list.
 
-   *If the characters of the word change color, you have successfully found a word!
-   It will be removed from the word list.
+   Play until all of the words are found and the program displays “YOU WIN”
 
-
-   *** The GUI gameplay has been proven to work on Tkinter installed on windows
-
+*** The GUI gameplay has been proven to work on Tkinter installed on Windows OS.
