@@ -9,7 +9,8 @@ class Letter:
     def __init__(self):
 
         alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
+        
+        random.seed()
         self.value = random.choice(alphabet)
         self.part_of_word = False
         self.place_in_word = None
